@@ -140,7 +140,7 @@
         </div>
     </section>
 
-    <!-- 新增章节：Youtu-LLM 介绍 -->
+    <!-- 章节：Youtu-LLM 介绍 -->
     <section id="llm" class="py-32 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 space-y-4">
@@ -238,70 +238,81 @@
         </div>
     </section>
 
-    <!-- 新增章节：Youtu-Agent 框架 -->
-    <section id="framework" class="py-32 bg-black border-t border-zinc-900 relative overflow-hidden">
-        <!-- 背景装饰光效 -->
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <!-- 章节：Youtu-Agent 框架 -->
+    <section id="framework" class="py-32 bg-[#F5F5F7] border-t border-slate-200 relative overflow-hidden">
+        <div class="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-blue-100/50 blur-[100px] rounded-full pointer-events-none mix-blend-multiply"></div>
+        <div class="absolute top-[20%] -left-[10%] w-[600px] h-[600px] bg-purple-100/50 blur-[100px] rounded-full pointer-events-none mix-blend-multiply"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row gap-16 items-center">
                 
                 <!-- 左侧：文案与特性 -->
-                <div class="w-full md:w-1/2 space-y-8">
+                <div class="w-full md:w-1/2 space-y-10">
                     <div class="space-y-4">
-                        <span class="text-green-500 font-semibold tracking-wide text-sm uppercase">Open Source Framework</span>
-                        <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+                        <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-600 font-semibold tracking-wide text-xs uppercase mb-2">Open Source Framework</span>
+                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
                             Build with <br>
-                            <span class="gradient-text">Youtu-Agent</span>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Youtu-Agent</span>
                         </h2>
-                        <p class="text-gray-400 text-lg leading-relaxed" data-i18n="agent_intro">
+                        <p class="text-slate-600 text-lg leading-relaxed" data-i18n="agent_intro">
                             Youtu-Tip 的强大动力源泉。一个灵活、高性能的智能体构建框架。支持自动化生成、混合策略优化，助你轻松构建 SOTA 级应用。
                         </p>
                     </div>
 
                     <!-- 特性列表 -->
                     <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center text-2xl border border-zinc-800">⚡️</div>
+                        <!-- Feature 1 -->
+                        <div class="flex gap-5 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-200 flex items-center justify-center text-2xl text-blue-500">
+                                ⚡️
+                            </div>
                             <div>
-                                <h4 class="text-white font-bold text-lg" data-i18n="agent_feat1_title">自动化智能体生成</h4>
-                                <p class="text-gray-500 text-sm mt-1" data-i18n="agent_feat1_desc">描述需求，Meta-Agent 自动编写工具代码与配置。</p>
+                                <h4 class="text-slate-900 font-bold text-lg" data-i18n="agent_feat1_title">自动化智能体生成</h4>
+                                <p class="text-slate-500 text-sm mt-1 leading-relaxed" data-i18n="agent_feat1_desc">描述需求，Meta-Agent 自动编写工具代码与配置。</p>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center text-2xl border border-zinc-800">🧠</div>
+                        <!-- Feature 2 -->
+                        <div class="flex gap-5 items-start">
+                             <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-200 flex items-center justify-center text-2xl text-purple-500">
+                                🧠
+                            </div>
                             <div>
-                                <h4 class="text-white font-bold text-lg" data-i18n="agent_feat2_title">无需训练的持续进化</h4>
-                                <p class="text-gray-500 text-sm mt-1" data-i18n="agent_feat2_desc">独创 Training-Free GRPO，低成本积累经验，越用越强。</p>
+                                <h4 class="text-slate-900 font-bold text-lg" data-i18n="agent_feat2_title">无需训练的持续进化</h4>
+                                <p class="text-slate-500 text-sm mt-1 leading-relaxed" data-i18n="agent_feat2_desc">独创 Training-Free GRPO，低成本积累经验，越用越强。</p>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center text-2xl border border-zinc-800">🏆</div>
+                        <!-- Feature 3 -->
+                        <div class="flex gap-5 items-start">
+                             <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-200 flex items-center justify-center text-2xl text-amber-500">
+                                🏆
+                            </div>
                             <div>
-                                <h4 class="text-white font-bold text-lg" data-i18n="agent_feat3_title">SOTA 性能验证</h4>
-                                <p class="text-gray-500 text-sm mt-1" data-i18n="agent_feat3_desc">WebWalkerQA (71.47%) 与 GAIA (72.8%) 领跑者。</p>
+                                <h4 class="text-slate-900 font-bold text-lg" data-i18n="agent_feat3_title">SOTA 性能验证</h4>
+                                <p class="text-slate-500 text-sm mt-1 leading-relaxed" data-i18n="agent_feat3_desc">WebWalkerQA (71.47%) 与 GAIA (72.8%) 领跑者。</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-4">
-                        <a href="https://github.com/TencentCloudADP/youtu-agent" target="_blank" class="inline-flex items-center gap-2 text-white border border-gray-600 px-6 py-2.5 rounded-full hover:bg-white hover:text-black transition group">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <div class="pt-6">
+                        <a href="https://github.com/TencentCloudADP/youtu-agent" target="_blank" class="inline-flex items-center gap-2 text-slate-900 bg-white border border-slate-300 px-6 py-3 rounded-full hover:bg-slate-50 hover:shadow-md transition-all group font-medium">
+                            <svg class="w-5 h-5 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             <span data-i18n="btn_view_repo">View on GitHub</span>
-                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            <span class="group-hover:translate-x-1 transition-transform text-slate-400">→</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- 右侧：代码终端演示 -->
                 <div class="w-full md:w-1/2">
-                    <div class="rounded-xl bg-[#1e1e1e] border border-zinc-800 shadow-2xl overflow-hidden font-mono text-sm leading-relaxed relative group">
+                    <div class="rounded-2xl bg-[#0F1117] border border-slate-900/10 shadow-2xl overflow-hidden font-mono text-sm leading-relaxed relative group transform transition hover:-translate-y-1 duration-500">
                         <!-- Mac 窗口控制点 -->
-                        <div class="bg-[#2d2d2d] px-4 py-3 border-b border-zinc-800 flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <div class="ml-auto text-xs text-gray-500">research_agent.yaml</div>
+                        <div class="bg-[#1e1e1e] px-4 py-3 border-b border-white/5 flex gap-2 items-center">
+                             <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                             </div>
+                            <div class="ml-auto text-xs text-slate-400 font-medium opacity-60">research_agent.yaml</div>
                         </div>
                         
                         <!-- 代码内容 -->
@@ -437,7 +448,7 @@
                 // Youtu-Agent Section
                 agent_intro: "Youtu-Tip 的强大动力源泉。一个灵活、高性能的智能体构建框架。支持自动化生成、混合策略优化，助你轻松构建 SOTA 级应用。",
                 agent_feat1_title: "自动化智能体生成",
-                agent_feat1_desc: "描述需求，Meta-Agent 自动编写工具代码与配置。",
+                agent_feat1_desc: "描述需求，Meta-Agent 自动编写工具代码与智能体配置。",
                 agent_feat2_title: "无需训练的持续进化",
                 agent_feat2_desc: "独创 Training-Free GRPO，低成本积累经验，越用越强。",
                 agent_feat3_title: "SOTA 性能验证",
@@ -477,7 +488,7 @@
                 // Youtu-Agent Section
                 agent_intro: "The engine behind Youtu-Tip. A flexible, high-performance framework for autonomous agents. Featuring automated generation and hybrid policy optimization.",
                 agent_feat1_title: "Automated Agent Generation",
-                agent_feat1_desc: "Describe tasks, and Meta-Agent auto-generates tool code & configs.",
+                agent_feat1_desc: "Describe tasks, and Meta-Agent auto-generates tool code & agent configs.",
                 agent_feat2_title: "Continuous Evolution",
                 agent_feat2_desc: "Training-Free GRPO enables experience learning without parameter updates.",
                 agent_feat3_title: "Verified SOTA Performance",
