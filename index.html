@@ -119,6 +119,12 @@
                     <h3 class="text-4xl font-bold text-slate-900 mb-4" data-i18n="feat3_title">读文件、看网页<br><span class="text-slate-500">全能助手</span></h3>
                     <p class="text-xl text-slate-600" data-i18n="feat3_desc">模拟键鼠操作、接入 MCP 服务器。在本地运行一个真正的多功能智能体。</p>
                 </div>
+
+                <!-- 特性 4 -->
+                <div class="feature-text absolute w-full opacity-0 transform translate-y-10" id="txt-4">
+                    <h3 class="text-4xl font-bold text-slate-900 mb-4" data-i18n="feat4_title">桌面新技能<br><span class="text-slate-500">一学就掌握</span></h3>
+                    <p class="text-xl text-slate-600" data-i18n="feat4_desc">「技能」机制允许 Tip 学习你教它的方法。定制化属于你的桌面自动化技能。</p>
+                </div>
             </div>
 
             <!-- 右侧：图片堆叠区 -->
@@ -127,6 +133,7 @@
                     <img id="img-1" src="https://github.com/user-attachments/assets/28dd0226-71de-4198-bd99-017e7ca6f269" class="img-stack" alt="Interaction">
                     <img id="img-2" src="https://github.com/user-attachments/assets/7a0875e8-170e-4549-b59c-9d0660e8fb0e" class="img-stack" alt="Privacy">
                     <img id="img-3" src="https://github.com/user-attachments/assets/8abb7391-0341-4b04-b625-79d39cb5ea88" class="img-stack" alt="Agent">
+                    <img id="img-4" src="https://github.com/user-attachments/assets/6175fcc1-6f74-4eff-906e-848263b4d99e" class="img-stack" alt="Skill">
                 </div>
             </div>
         </div>
@@ -251,7 +258,7 @@
             scrollTrigger: {
                 trigger: "#features",
                 start: "top top",
-                end: "+=3000", // 滚动距离：决定动画播放时长
+                end: "+=4000", // 滚动距离：决定动画播放时长
                 pin: true,     // 钉住
                 scrub: true,   // 绑定滚动条
                 anticipatePin: 1
@@ -271,6 +278,13 @@
             .to("#img-2", { opacity: 0, duration: 1 }, "<")
             .to("#txt-3", { opacity: 1, y: 0, duration: 1 })
             .to("#img-3", { opacity: 1, duration: 1 }, "<")
+            .to({}, { duration: 1 }) // 停顿
+
+            // 阶段 3 -> 4
+            .to("#txt-3", { opacity: 0, y: -20, duration: 1 })
+            .to("#img-3", { opacity: 0, duration: 1 }, "<")
+            .to("#txt-4", { opacity: 1, y: 0, duration: 1 })
+            .to("#img-4", { opacity: 1, duration: 1 }, "<")
             .to({}, { duration: 1 }); // 停顿
 
         // 3. LLM Tab 切换逻辑
@@ -309,6 +323,8 @@
                 feat2_desc: "内置 Youtu-llm 模型，完全离线运行。所有数据仅在本地处理，安全无忧。",
                 feat3_title: '读文件、看网页<br><span class="text-slate-500">全能助手</span>',
                 feat3_desc: "模拟键鼠操作、接入 MCP 服务器。在本地运行一个真正的多功能智能体。",
+                feat4_title: '桌面新技能<br><span class="text-slate-500">一学就掌握</span>',
+                feat4_desc: "「技能」机制允许 Tip 学习你教它的方法。定制化属于你的桌面自动化技能。",
                 // LLM Section
                 llm_subtitle: "小巧身躯，强悍性能",
                 llm_intro: "1.96B 参数，128K 上下文。专为 STEM、代码与智能体任务设计。<br>在轻量级模型中重新定义 SOTA。",
@@ -337,6 +353,8 @@
                 feat2_desc: "Built-in Youtu-llm models running completely offline. All data is processed locally.",
                 feat3_title: 'Reads Files & Web<br><span class="text-slate-500">All-Round Agent</span>',
                 feat3_desc: "Simulates mouse/keyboard actions, connects to MCP servers. Run a versatile agent locally.",
+                feat4_title: 'New Desktop Skills<br><span class="text-slate-500">Learn and Master</span>',
+                feat4_desc: "\"Skill\" mechanism allows Tip to learn from methods you teach it. Customize your own desktop automation skills.",
                 // LLM Section
                 llm_subtitle: "Small Size, Massive Power",
                 llm_intro: "1.96B Params, 128K Context. Designed for STEM, Coding & Agent tasks.<br>Redefining SOTA for lightweight models.",
