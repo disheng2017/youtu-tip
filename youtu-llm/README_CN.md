@@ -2,7 +2,7 @@
 
 # <img src="assets/logo.svg" alt="Tencent Youtu Lab Logo" height="26px"> Youtu-LLM: <br>解锁轻量级大语言模型的原生智能体潜力
 
-[🔖 English](README.md) • [🤗 模型](https://huggingface.co/collections/tencent/youtu) • [📑 技术报告](assets/Youtu-LLM_Technical_Report.pdf) • [⭐ 贡献与创新](#contributions) • [📊 性能对比](#benchmarks) • [🚀 快速入门](#quickstart)
+[🔖 English](README.md) • [🤗 模型](https://huggingface.co/collections/tencent/youtu) • [📑 技术报告](https://arxiv.org/abs/2512.24618) • [⭐ 贡献与创新](#contributions) • [📊 性能对比](#benchmarks) • [🚀 快速入门](#quickstart)
 
 </div>
 

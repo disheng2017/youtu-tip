@@ -2,7 +2,7 @@
 
 # <img src="assets/logo.svg" alt="Tencent Youtu Lab Logo" height="26px"> Youtu-LLM: <br>Unlocking the Native Agentic Potential for Lightweight Large Language Models
 
-[🔖 中文版](README_CN.md) • [🤗 Models](https://huggingface.co/collections/tencent/youtu) • [📑 Technical Report](assets/Youtu-LLM_Technical_Report.pdf) • [⭐ Contributions](#contributions) • [📊 Benchmarks](#benchmarks) • [🚀 Getting Started](#quickstart)
+[🔖 中文版](README_CN.md) • [🤗 Models](https://huggingface.co/collections/tencent/youtu) • [📑 Technical Report](https://arxiv.org/abs/2512.24618) • [⭐ Contributions](#contributions) • [📊 Benchmarks](#benchmarks) • [🚀 Getting Started](#quickstart)
 
 </div>
 
