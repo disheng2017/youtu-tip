@@ -83,4 +83,3 @@ class DebugReportResponse(BaseModel):
     path: str
     report_id: str
     created_at: str
-    remote_url: str | None = None

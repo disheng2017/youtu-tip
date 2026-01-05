@@ -60,11 +60,7 @@ export function ReportApp() {
       const result = await window.tipReport?.submit?.({ issue: issue.trim() })
       setSubmitState({
         status: 'success',
-        message: result?.remoteUrl
-          ? `已上传：${result.remoteUrl}`
-          : result?.path
-            ? `已保存：${result.path}`
-            : '问题日志已保存',
+        message: result?.path ? `已保存：${result.path}` : '问题日志已保存',
       })
     } catch (error) {
       setSubmitState({

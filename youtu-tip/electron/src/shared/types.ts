@@ -219,7 +219,6 @@ export interface DebugReportResult {
   path: string
   reportId: string
   createdAt: string
-  remoteUrl?: string
 }
 
 export interface SkillSummary {

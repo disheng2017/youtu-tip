@@ -1,6 +1,6 @@
 # File: python/app/services/debug_report.py
 # Project: Tip Desktop Assistant
-# Description: Collects session artifacts, GUI agent outputs, and optionally uploads debug reports to COS.
+# Description: Collects session artifacts and GUI agent outputs into local debug report bundles.
 
 # Copyright (C) 2025 Tencent. All rights reserved.
 # License: Licensed under the License Terms of Youtu-Tip (see license at repository root).
@@ -26,7 +26,6 @@ from ..schemas.debug import (
     DebugReportResponse,
 )
 from ..services.chat_session import ChatSessionManager
-from ..services.cos_uploader import CosUploader
 from ..services.gui_agent import GuiAgentRun, GuiAgentService
 from ..services.settings_manager import SettingsManager
 import structlog
@@ -47,13 +46,11 @@ class DebugReportService:
         self,
         settings_manager: SettingsManager,
         chat_manager: ChatSessionManager,
-        cos_uploader: CosUploader | None = None,
         gui_agent_service: GuiAgentService | None = None,
     ) -> None:
         # Keep shared service handles for capturing runtime state and optional uploads.
         self._settings_manager = settings_manager
         self._chat_manager = chat_manager
-        self._uploader = cos_uploader
         self._gui_agent = gui_agent_service
         # Ensure the local report directory exists before persisting artifacts.
         DEBUG_REPORT_DIR.mkdir(parents=True, exist_ok=True)
@@ -110,20 +107,10 @@ class DebugReportService:
         # 使用 pickle 保留嵌套结构，后续调试读取更方便。
         with file_path.open('wb') as handle:
             pickle.dump(report, handle)
-        remote_url = None
-        if self._uploader:
-            key = f'debug-reports/{file_path.name}'
-            try:
-                # 上传失败应暴露给调用方，让用户知悉远端未成功保存。
-                remote_url = self._uploader.upload_file(file_path, key)
-            except Exception as exc:  # noqa: BLE001
-                logger.error('debug_report.upload_failed', error=str(exc), key=key)
-                raise
         return DebugReportResponse(
             path=str(file_path),
             report_id=report_id,
             created_at=created_at,
-            remote_url=remote_url,
         )
 
     def _build_gui_agent_bundle(self, ref: Optional[DebugGuiAgentRef]) -> dict | None:

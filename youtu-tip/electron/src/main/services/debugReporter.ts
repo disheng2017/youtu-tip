@@ -151,7 +151,6 @@ export async function submitDebugReport(payload: ReportSubmitPayload): Promise<D
       path: data.path,
       reportId: data.report_id ?? data.reportId,
       createdAt: data.created_at ?? data.createdAt,
-      remoteUrl: data.remote_url ?? data.remoteUrl,
     }
   })()
 

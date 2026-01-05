@@ -1,6 +1,6 @@
 # File: python/app/core/config.py
 # Project: Tip Desktop Assistant
-# Description: Environment and path configuration for base dirs, settings files, caches, and COS credentials.
+# Description: Environment and path configuration for base dirs, settings files, and cache directories.
 
 # Copyright (C) 2025 Tencent. All rights reserved.
 # License: Licensed under the License Terms of Youtu-Tip (see license at repository root).
@@ -46,10 +46,3 @@ USER_SETTINGS_FILE = _resolve_path(
 LOG_DIR = _resolve_path('TIP_LOG_DIR', Path.home() / '.tip' / 'logs')
 CACHE_DIR = _resolve_path('TIP_CACHE_DIR', Path.home() / 'Library' / 'Caches' / 'Tip')
 DEBUG_REPORT_DIR = _resolve_path('TIP_DEBUG_DIR', CACHE_DIR / 'debug-reports')
-
-COS_SECRET_ID = os.environ.get('COS_SECRET_ID')
-COS_SECRET_KEY = os.environ.get('COS_SECRET_KEY')
-COS_BUCKET = os.environ.get('COS_BUCKET', 'tipdebug-1253974802')
-COS_REGION = os.environ.get('COS_REGION', 'ap-shanghai')
-COS_SCHEME = os.environ.get('COS_SCHEME', 'https')
-COS_UPLOAD_DISABLED = _get_env_bool('COS_DISABLE_UPLOAD', default=True)

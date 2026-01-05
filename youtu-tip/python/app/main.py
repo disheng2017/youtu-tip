@@ -34,7 +34,6 @@ from .services.llm import LLMService
 from .services.chat_session import ChatSessionManager
 from .services.intent_builder import IntentService
 from .services.debug_report import DebugReportService
-from .services.cos_uploader import build_cos_uploader_from_env
 from .services.text_selection import TextSelectionService
 from .services.gui_agent import GuiAgentService
 from .services.youtu_agent_service import YoutuAgentService
@@ -52,7 +51,6 @@ async def lifespan(app: FastAPI):
     llm_service = LLMService(settings_manager, tip_auth=tip_auth)
     chat_manager = ChatSessionManager(llm_service)
     intent_service = IntentService(llm_service, chat_manager)
-    cos_uploader = build_cos_uploader_from_env()
     text_selection = TextSelectionService()
     skills_path = Path(__file__).resolve().parent / "gui_agent" / "skills"
     skill_repo = SkillRepository(skills_path)
@@ -60,7 +58,6 @@ async def lifespan(app: FastAPI):
     debug_reporter = DebugReportService(
         settings_manager,
         chat_manager,
-        cos_uploader,
         gui_agent_service=gui_agent,
     )
     # Youtu Agent 配置可从打包目录读取，缺失时为空。
