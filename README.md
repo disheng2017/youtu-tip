@@ -47,7 +47,7 @@ Tip focuses on “better interaction, safer privacy, broader capability”:
 
 ### Installer
 
-We provide a download link: [Download link](github release)  
+We provide a download link: [GitHub Release](https://github.com/TencentCloudADP/youtu-tip/releases)  
 > Tip currently supports MacOS devices with Apple Silicon (M-series). More device types are being adapted and packaged quickly.
 
 After downloading, grant the required permissions:
