@@ -20,9 +20,6 @@ Tip is powered by a series of self-developed lightweight models:
 
 You are also free to swap out the model for any alternative you prefer.
 
-Click the image below to view the demo video:
-[![Tip Demo](youtu-tip/docs/assets/demo_video_cover.jpg)](https://tristanli-1252178374.cos.ap-shanghai.myqcloud.com/tip-demo_v2.mp4)
-
 
 ---
 

@@ -20,8 +20,6 @@ Tip 由自研的一系列轻量级模型驱动：
 
 你也可以随时将模型替换为你喜欢的任何其他模型。
 
-点击下方图片预览Demo视频:
-[![Tip Demo](youtu-tip/docs/assets/demo_video_cover.jpg)](https://tristanli-1252178374.cos.ap-shanghai.myqcloud.com/tip-demo_v2.mp4)
 
 ---
 
