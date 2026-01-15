@@ -93,7 +93,7 @@ Once running, connect Tip:
 2. In “Channel,” choose “ollama” and enter the model name.
 3. Save, then connect it in “Settings - General.”
 
-Youtu-LLM has been adapted to `llama.cpp` and we have submitted a pull request to the `Ollama` project. Support for `ollama` will be available soon. Please stay tuned.
+Youtu-LLM has been adapted to `llama.cpp` and we have submitted a pull request to the `Ollama` project. Support for `ollama` will be available soon. Please stay tuned. Usage of `llama.cpp` installation, please refer to: [README](youtu-llm/README.md#5-llamacpp-deployment).
 
 
 #### Use the OpenAI endpoint

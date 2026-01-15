@@ -101,7 +101,7 @@ Tip 由自研的一系列轻量级模型驱动：
 2. 在「通道」页面选择「OpenAI SDK」，并且填写 base_url, api_key, model 等相关信息
 3. 点击保存，即可在「设置 - 通用」页面点击并接入
 
-我们提供的端侧模型 Youtu-LLM 已经适配 llama.cpp 并已经在 Ollama 项目提交 PR，预计将在近期开放支持，敬请期待。
+我们提供的端侧模型 Youtu-LLM 已经适配 llama.cpp 并已经在 Ollama 项目提交 PR，预计将在近期开放支持，敬请期待。llama.cpp 使用说明详见：[README](youtu-llm/README.md#5-llamacpp-deployment)
 
 
 
