@@ -11,6 +11,14 @@
 | <a href="#performance-comparison"><b>Performance</b></a>
 </p>
 
+<div align="center">
+  <a href="https://youtu.be/c4vczLEmVt4" title="Tip demo video">
+    <img src="https://img.youtube.com/vi/c4vczLEmVt4/hqdefault.jpg" alt="Tip demo video thumbnail" width="720">
+  </a>
+  <br />
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/c4vczLEmVt4?si=n242pWrqiLcPKxA_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 Tip is a proactive on-device AI assistant that intelligently understands your current work. As a more user-friendly extension of [Youtu-Agent](https://github.com/TencentCloudADP/Youtu-agent), Tip integrates agent invocation, contextual intent detection and more. It is fully open source, supports offline on-device use, and keeps your privacy secure.
 
 Tip is powered by a series of self-developed lightweight models:
@@ -31,14 +39,14 @@ Tip focuses on “better interaction, safer privacy, broader capability”:
 
 - **One hotkey, as the AI super entry**: With minimal interaction, you get the model’s power. Press the hotkey and select text or an image—Tip prepares the context for you. We are building a smarter Spotlight-style entry for a smoother AI experience.
 - **On-device models for full privacy**: We support fully offline calls to local model services. All data and processing can run against your own on-device models. The Youtu-LLM series provides strong performance and agent ability for secure local work.
-- **Read files, browse pages—no problem**: Youtu Agent capability lets Tip connect to agents/MCP servers/tools for complex tasks, and run a multifunction agent locally.
+- **Read files, browse pages—no problem**: GUI Agent and Youtu Agent capabilities let Tip simulate mouse/keyboard actions for desktop control, connect to agents/MCP servers/tools for complex tasks, and run a multifunction agent locally.
 
 ### Why Tip was built
 
 - **Data and privacy safety**: Many LLM agent apps default to processing data in the cloud. For privacy-sensitive scenarios like social platforms, users may not want screen content sent to cloud models and instead prefer private on-device solutions.
 - **The last mile of interaction**: LLM apps usually start with a chat box and require typing. We want a smarter way to complete context: no manual typing, copy/paste, or image uploads—Tip understands what is on screen, completes context, infers intent, and suggests actions to reduce typing and close the interaction gap.
 - **On-device agent environment**: Most agents live in the cloud, making it hard to run local tasks like “understand and organize local files” or “check chats on a social platform.” We aim to provide a mature framework and environment so users can run a more capable agent locally.
-
+- **New Desktop Skills, Learn and Master:** We've designed a "GUI skill" mechanism for the GUI Agent, allowing Tip to learn new skills from methods taught to it by users. For example, teaching a large model how to "perform specific data cleanup" or "use user-specific tools to perform tasks," customizing your desktop automation skills.
 
 ## How to use Tip
 
@@ -49,7 +57,7 @@ We provide a download link: [GitHub Release](https://github.com/TencentCloudADP/
 
 After downloading, grant the required permissions:
 - On first launch, enable screen recording and accessibility permissions so shortcuts and screenshots work correctly.  
-  > If Tip is not listed, click the + button, locate Tip, and add it. Permission scope: accessibility is used only to read current selection; screen and audio capture are used only for region screenshots.
+  > If Tip is not listed, click the + button, locate Tip, and add it. Permission scope: accessibility is used only to read current selection and simulate keyboard/mouse; screen and audio capture are used only for region screenshots.
 - Press `ctrl + shift` to activate Tip and start using it.
 
 <p align="center"><img src="youtu-tip/docs/assets/doc_privacy_en.png" alt="Permissions screenshot" width="720"></p>
@@ -66,6 +74,13 @@ Three quick ways to invoke Tip:
 
 
 ## More Tip tricks
+
+### GUI skills
+
+We provide Claude-style “skills”: you can teach the model how to operate the computer and let it remember those actions for future use. For example, teach “find the cheapest flights”: open the site, click “sale flights,” then sort by price.
+
+Add more skills under “Settings - GUI Agent” to help Tip operate the desktop more effectively.
+
 
 ### Youtu Agent
 
@@ -104,6 +119,21 @@ We also support the standard OpenAI SDK entry. You can use any online provider o
 2. In “Channel,” choose “OpenAI SDK” and fill in `base_url`, `api_key`, `model`, etc.
 3. Save, then connect it in “Settings - General.”
 
+
+#### Capability Description
+
+Due to the limited number of parameters, edge models have relatively limited performance. They may not be able to complete some tasks, and the accuracy of their output text may be lower compared to larger models. We provide a simple introductory table to easily distinguish the current capabilities of the edge model:
+
+| Task Name | Specific Example | Edge Model | Large Model |
+| --- | --- | :---: | :---: |
+| Search Content | “Search xxx on this page” | ✅ | ✅ |
+| Simple Visual Location | “Click the xxx button and enter xxx” | ✅ | ✅ |
+| Single-Step Logic Task | “Fill out a form” | ❌ | ✅ |
+| Multi-Step Reasoning Planning | “Search for flight tickets and compare prices” | ❌ | ✅ |
+| Cross-Application Collaboration | “Copy content from application xx to application xx” | ❌ | ✅ |
+| Anomaly Self-Correction | “Retry when an error is encountered” | ✅ | ✅ |
+
+If you encounter a problem that the edge model cannot solve, we recommend deploying a model with a larger number of parameters and a trusted access point to improve the user experience.
 
 
 ## Local development
