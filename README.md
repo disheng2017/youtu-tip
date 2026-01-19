@@ -12,11 +12,9 @@
 </p>
 
 <div align="center">
-  <a href="https://youtu.be/c4vczLEmVt4" title="Tip demo video">
-    <img src="https://img.youtube.com/vi/c4vczLEmVt4/hqdefault.jpg" alt="Tip demo video thumbnail" width="720">
+  <a href="https://youtu.be/c4vczLEmVt4" title="Watch on YouTube">
+    <img src="https://img.shields.io/badge/Watch_Demo_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Demo on YouTube">
   </a>
-  <br />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/c4vczLEmVt4?si=n242pWrqiLcPKxA_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 Tip is a proactive on-device AI assistant that intelligently understands your current work. As a more user-friendly extension of [Youtu-Agent](https://github.com/TencentCloudADP/Youtu-agent), Tip integrates agent invocation, contextual intent detection and more. It is fully open source, supports offline on-device use, and keeps your privacy secure.

@@ -12,11 +12,9 @@
 </p>
 
 <div align="center">
-  <a href="https://youtu.be/c4vczLEmVt4" title="Tip 演示视频">
-    <img src="https://img.youtube.com/vi/c4vczLEmVt4/hqdefault.jpg" alt="Tip 演示视频缩略图" width="720">
+  <a href="https://youtu.be/c4vczLEmVt4" title="在 YouTube 上观看">
+    <img src="https://img.shields.io/badge/点击查看Demo视频-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="在 YouTube 上观看">
   </a>
-  <br />
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/c4vczLEmVt4?si=n242pWrqiLcPKxA_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 Tip 是一个主动式端侧AI助手，一键调用，智能地理解您当前的工作内容。Tip 是 Youtu-Agent 的一个更易于使用的可视化应用，它集成了桌面自动化、智能体工具、上下文补全等功能。它完全开源，支持离线设备使用，并保障您的隐私安全。
