@@ -23,7 +23,7 @@ Tip 由自研的一系列轻量级模型驱动：
 - Youtu-LLM：1.96B 的小巧大模型，强悍原生智能体能力。
   > [🤗 模型](https://huggingface.co/collections/tencent/youtu) | [📑 技术报告](https://arxiv.org/abs/2512.24618) | [🚀 快速入门](youtu-llm/README_CN.md)
 - Youtu-VL: 基于 Youtu-LLM-4B 的多模态大模型，具备全面的视觉感知能力。
-  > [🤗 模型](https://huggingface.co/collections/tencent/youtu) | [📑 技术报告]() | [🚀 快速入门](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
+  > [🤗 模型](https://huggingface.co/collections/tencent/youtu) | [📑 技术报告](https://arxiv.org/abs/2601.19798) | [🚀 快速入门](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
 
 你也可以随时将模型替换为你喜欢的任何其他模型。
 
@@ -417,5 +417,9 @@ Youtu-Tip 项目以及 Youtu-LLM 模型基于 [LICENSE](./LICENSE) 进行开源�
   title={Youtu-VL: Unleashing Visual Potential via Unified Vision-Language Supervision},
   author={Tencent Youtu Lab},
   year={2026},
+  eprint={2601.19798},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2601.19798}, 
 }
 ```

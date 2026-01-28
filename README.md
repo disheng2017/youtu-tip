@@ -23,7 +23,7 @@ Tip is powered by a series of self-developed lightweight models:
 - Youtu-LLM: A compact 1.96B model with powerful native agent capabilities.
   > [🤗 Model](https://huggingface.co/collections/tencent/youtu) | [📑 Technical Report](https://arxiv.org/abs/2512.24618) | [🚀 Quick Start Guide](youtu-llm/README.md)
 - Youtu-VL: A multimodal large model based on Youtu-LLM-4B, featuring comprehensive visual perception capabilities.
-  > [🤗 Model](https://huggingface.co/collections/tencent/youtu) | [📑 Technical Report]() | [🚀 Quick Start Guide](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
+  > [🤗 Model](https://huggingface.co/collections/tencent/youtu) | [📑 Technical Report](https://arxiv.org/abs/2601.19798) | [🚀 Quick Start Guide](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
 
 You are also free to swap out the model for any alternative you prefer.
 
@@ -412,5 +412,9 @@ If you find this work useful, please consider citing:
   title={Youtu-VL: Unleashing Visual Potential via Unified Vision-Language Supervision},
   author={Tencent Youtu Lab},
   year={2026},
+  eprint={2601.19798},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2601.19798}, 
 }
 ```
