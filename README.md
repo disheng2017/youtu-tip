@@ -22,7 +22,8 @@ Tip is a proactive on-device AI assistant that intelligently understands your cu
 Tip is powered by a series of self-developed lightweight models:
 - Youtu-LLM: A compact 1.96B model with powerful native agent capabilities.
   > [🤗 Model](https://huggingface.co/collections/tencent/youtu) | [📑 Technical Report](https://arxiv.org/abs/2512.24618) | [🚀 Quick Start Guide](youtu-llm/README.md)
-- Youtu-VL: 4B on-device multimodal large model, comprehensive visual perception capability (soon to be open source)
+- Youtu-VL: A multimodal large model based on Youtu-LLM-4B, featuring comprehensive visual perception capabilities.
+  > [🤗 Model](https://huggingface.co/collections/tencent/youtu) | [📑 Technical Report]() | [🚀 Quick Start Guide](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
 
 You are also free to swap out the model for any alternative you prefer.
 
@@ -247,10 +248,140 @@ model = AutoModelForCausalLM.from_pretrained(
 
 We provide a quick start covering “inference with transformers,” “configure thinking mode,” “tune decoding params,” and “deploy with vLLM and tool use.” See: [README](youtu-llm/README.md)
 
+---
+
+## Youtu-VL: Unleashing Visual Potential via Unified Vision-Language Supervision
+
+**Youtu-VL** is a lightweight yet robust Vision-Language Model (VLM) built on the Youtu-LLM with 4B parameters. It pioneers Vision-Language Unified Autoregressive Supervision (VLUAS), which markedly strengthens visual perception and multimodal understanding. This enables a standard VLM to perform vision-centric tasks without task-specific additions. Across benchmarks, Youtu-VL stands out for its versatility, achieving competitive results on both vision-centric and general multimodal tasks.
+
+
+### Highlights
+Youtu-VL’s main contributions:
+- **Vision–Language Unified Autoregressive Supervision (VLUAS)**: Youtu-VL is built on the VLUAS paradigm to mitigate the text-dominant optimization bias in conventional VLMs, where visual signals are treated as passive conditions and fine-grained details are often dropped. Rather than using vision features only as inputs, Youtu-VL expands the text lexicon into a unified multimodal vocabulary through a learned visual codebook, turning visual signals into autoregressive supervision targets. Jointly reconstructing visual tokens and text explicitly preserves dense visual information while strengthening multimodal semantic understanding.
+- **Vision-Centric Prediction with a Standard Architecture (no task-specific modules)**: Youtu-VL treats image and text tokens with equivalent autoregressive status, empowering it to perform vision-centric tasks for both dense vision prediction (e.g., segmentation, depth) and text-based prediction (e.g., grounding, detection) within a standard VLM architecture, eliminating the need for task-specific additions. This design yields a versitile general-purpose VLM, allowing a single model to flexibly accommodate a wide range of vision-centric and vsion-language requirements.
+
+## Performance comparison
+
+### Vision-Centric Tasks
+
+| Benchmarks | Youtu-VL 4B (instruct) | Qwen3-VL 4B (instruct) | InternVL-3.5 4B | UFO 8B | GiT 756M | VisionLLM v2 7B | *VLM | *Non-VLM |
+|------------|:-------------:|:-------------:|:------------------:|:--------:|:----------:|:------------------:|:------:|:----------:|
+| **Visual Grounding** |  |  |  |  |  |  |  |  |
+| RefCOCO val | 93.6 | 90.7 | 92.5 | 91.8 | - | 90.0 | 92.6 | 90.5 |
+| RefCOCO testA | 95.2 | 92.2 | 94.3 | 94.3 | - | 93.1 | 94.3 | 93.1 |
+| RefCOCO testB | 90.8 | 86.7 | 88.2 | 87.5 | - | 87.1 | 91.4 | 88.2 |
+| RefCOCO+ val | 90.1 | 82.9 | 87.6 | 86.9 | - | 81.1 | 88.7 | 82.7 |
+| RefCOCO+ testA | 93.9 | 89.4 | 92.3 | 91.3 | - | 87.3 | 92.2 | 88.9 |
+| RefCOCO+ testB | 85.4 | 75.6 | 81.6 | 80.6 | - | 74.5 | 83.2 | 75.9 |
+| RefCOCOg val | 92.2 | 87.3 | 89.6 | 87.9 | - | 85.0 | 89.2 | 86.1 |
+| RefCOCOg test | 92.9 | 87.7 | 89.3 | 88.6 | - | 86.4 | 89.3 | 87.0 |
+| **Object Detection** |  |  |  |  |  |  |  |  |
+| COCO val | 47.1 | - | - | 48.9 | 46.7 | 56.7 | 63.7 | 63.1 |
+| **Semantic Segmentation** |  |  |  |  |  |  |  |  |
+| ADE20k | 54.2 | × | × | 54.5 | 47.8 | 52.3 | 38.4 | 56.4 |
+| Cityscapes | 70.4 | × | × | - | 61.8 | - | 42.0 | 83.3 |
+| Context59 | 60.4 | × | × | - | 63.3 | - | 63.6 | 60.8 |
+| VOC20 | 92.5 | × | × | - | - | - | 97.1 | - |
+| COCOStuff | 52.5 | × | × | 30.2 | 49.1 | - | 39.6 | 45.7 |
+| **Referring Segmentation** |  |  |  |  |  |  |  |  |
+| RefCOCO val | 80.7 | × | × | 80.0 | × | 76.6 | 80.5 | 79.3 |
+| RefCOCO testA | 82.0 | × | × | 81.6 | × | 79.3 | 82.6 | 81.2 |
+| RefCOCO testB | 78.4 | × | × | 78.1 | × | 74.3 | 76.9 | 77.8 |
+| RefCOCO+ val | 76.2 | × | × | 76.7 | × | 64.5 | 74.3 | 69.5 |
+| RefCOCO+ testA | 79.6 | × | × | 79.9 | × | 69.8 | 78.9 | 75.6 |
+| RefCOCO+ testB | 71.4 | × | × | 72.3 | × | 61.5 | 68.4 | 63.0 |
+| RefCOCOg val | 76.5 | × | × | 75.5 | × | 70.7 | 76.3 | 71.3 |
+| RefCOCOg test | 76.6 | × | × | 76.3 | × | 71.2 | 77.0 | 72.0 |
+| **Depth Estimation** |  |  |  |  |  |  |  |  |
+| NYUv2 | 90.4 | × | × | 93.6 | × | × | 86.8 | 98.8 |
+| Cityscapes | 92.7 | × | × | - | × | × | - | 92.1 |
+| DDAD | 87.6 | × | × | - | × | × | 74.7 | 88.2 |
+| **Human Pose** |  |  |  |  |  |  |  |  |
+| MPII | 89.1 | × | × | × | × | - | 89.3 | 93.3 |
+| **Image Classification** |  |  |  |  |  |  |  |  |
+| ImageNet-ReaL | 89.3 | - | - | × | × | × | 91.1 | 91.2 |
+| **Object Counting** |  |  |  |  |  |  |  |  |
+| TallyQA-Simple | 85.1 | 79.0 | 77.6 | × | × | × | 84.9 | 86.3 |
+| TallyQA-Complex | 74.4 | 64.0 | 66.4 | × | × | × | 72.3 | 77.1 |
+| CountBench | 88.6 | 78.4 | 79.4 | × | × | × | 83.1 | 93.8 |
+
+
+
+### General Multimodal Tasks
+
+| Benchmarks | Qwen3-VL 8B (instruct) | InternVL-3.5 4B | Qwen3-VL 4B (instruct) | Youtu-VL 4B (instruct) |
+|------------|:--------------------:|:------------------:|:---------------------:|:---------------------:|
+| **General VQA** |  |  |  |  |
+| MMBench_CN | 84.7 | - | 83.5 | 83.6 |
+| MMBench_EN | 84.5 | 80.3 | 83.9 | 83.9 |
+| MMStar | 70.9 | 65.0 | 69.8 | 71.1 |
+| MME (/2800) | - | 2272 | 2309* | 2384 |
+| CVBench_2d | - | - | 79.1* | 80.4 |
+| CVBench_3d | - | - | 92.4* | 93.0 |
+| ScienceQA_val | - | - | 94.7* | 97.0 |
+| SEEDBench_IMG | - | - | 77.0* | 76.9 |
+| SEEDBench2 | - | - | 75.9* | 74.5 |
+| MMVet | - | - | 68.3* | 64.6 |
+| **Multimodal Reasoning & Math** |  |  |  |  |
+| VisuLogic | 22.5 | - | 19.0 | 25.7 |
+| MMMU_val | 69.6 | 66.6 | 67.4 | 61.1 |
+| MMMU-Pro | 55.9 | - | 53.2 | 43.0 |
+| CMMMU_val | - | - | 54.6* | 52.6 |
+| MathVista_mini | 77.2 | 77.1 | 73.7 | 76.5 |
+| MathVerse_mini | 62.1 | 45.8 | 46.8 | 56.5 |
+| LogicVista | 55.3 | 41.8 | 53.2 | 52.4 |
+| VLMsAreBlind | 74.0 | - | 71.9 | 88.9 |
+| **Hallucination** |  |  |  |  |
+| HallusionBench | 61.1 | 44.8 | 57.6 | 59.1 |
+| CRPE_exist | - | - | 95.6* | 96.9 |
+| CRPE_relation | - | 75.0 | 71.0* | 72.2 |
+| POPE | - | 88.9 | 89.3* | 86.4 |
+| **OCR-related Understanding** |  |  |  |  |
+| AI2D_test | 85.7 | 82.6 | 84.1 | 85.6 |
+| InfoVQA_val | 83.1 | 78.0 | 80.3 | 79.1 |
+| TextVQA_val | - | 77.9 | 80.8* | 79.6 |
+| DocVQA_val | 96.1 | 92.4 | 95.3 | 94.4 |
+| ChartQA_test | 89.6 | 86.0 | 84.6 | 85.3 |
+| OCRBench | 896 | 822 | 881 | 813 |
+| SEEDBench2Plus | - | 69.4 | 71.5* | 71.3 |
+| CharXivDQ | 83.0 | 71.1 | 76.2 | 79.4 |
+| CharXivRQ | 46.4 | 39.6 | 39.7 | 43.8 |
+| **Multi-image & Real-world** |  |  |  |  |
+| BLINK | 69.1 | 58.1 | 65.8 | 64.3 |
+| RealWorldQA | 71.5 | 66.3 | 70.9 | 74.6 |
+| MMERealWorld_EN | - | - | 63.0* | 61.5 |
+| MMERealWorld_CN | - | 59.8 | 61.3* | 63.5 |
+| **GUI Agent** |  |  |  |  |
+| ScreenSpot Pro | 54.6 | - | 59.5 | 59.6 |
+| OSWorld | 33.9 | - | 26.2 | 38.8 |
+| **Text-Centric** |  |  |  |  |
+| MMLU-Pro | 71.6 | - | 67.1 | 56.5 |
+| MMLU-Redux | 84.9 | - | 81.5 | 76.8 |
+| C-Eval | - | 71.9 | 76.5 | 69.1 |
+| MuSR | - | - | 46.6 | 58.3 |
+| IFEval | 83.7 | - | 82.3 | 76.9 |
+| DROP (F1) | - | - | 85.0 | 79.3 |
+| BBH | - | - | 84.8 | 71.9 |
+| GPQA-Diamond | - | - | 42.9 | 39.8 |
+
+
+## Using Youtu-VL
+
+Usage:
+
+```python
+from transformers import AutoProcessor, AutoModelForCausalLM
+
+model = AutoModelForCausalLM.from_pretrained(
+    "tencent/Youtu-VL-4B-Instruct", attn_implementation="flash_attention_2", torch_dtype="auto", device_map="cuda", trust_remote_code=True
+).eval()
+```
+
+We provide a quick start, See: [README](https://github.com/TencentCloudADP/youtu-vl/blob/main/README.md)
 
 ## License
 
-Youtu-Tip and Youtu-LLM are open-sourced under [LICENSE](./LICENSE).
+Youtu-Tip and Youtu-LLM are open-sourced under the [LICENSE](./LICENSE), while Youtu-VL is open-sourced under the [LICENSE](https://github.com/TencentCloudADP/youtu-vl/blob/main/LICENSE).
 
 ## 📚 Citation
 
@@ -275,5 +406,11 @@ If you find this work useful, please consider citing:
   archivePrefix={arXiv},
   primaryClass={cs.CL},
   url={https://arxiv.org/abs/2512.24618}, 
+}
+
+@article{youtu-vl,
+  title={Youtu-VL: Unleashing Visual Potential via Unified Vision-Language Supervision},
+  author={Tencent Youtu Lab},
+  year={2026},
 }
 ```
