@@ -127,6 +127,11 @@ Youtu-LLM的主要贡献如下:
 
 本指南将帮助您快速部署并调用 **Youtu-LLM-2B** 模型。该模型支持“思考模式”（Reasoning Mode），能够通过思维链（CoT）生成更高质量的回答。
 
+<details>
+<summary>Transformers（<5.0.0.dev0）</summary>
+
+如果您想基于较早的transformers版本使用Youtu-LLM-2B，请务必注意从该[commit](https://huggingface.co/tencent/Youtu-LLM-2B/commit/5690998a0a4cae7a7ec970d09262745e00bb6c5c)之前的repo下载模型.
+
 ### 1. 环境准备
 
 确保您的 Python 环境已安装 `transformers` 库，且版本符合要求。
@@ -207,6 +212,94 @@ thought, final_answer = parse_reasoning(full_response)
 print(f"\n{'='*20} Thought Process {'='*20}\n{thought}")
 print(f"\n{'='*20} Final Answer {'='*20}\n{final_answer}")
 ```
+</details>
+
+<details>
+<summary>Transformers (>=5.0.0.dev0)</summary>
+
+### 1. 环境准备
+
+确保您的 Python 环境已安装 `transformers` 库，且版本符合要求。
+
+```bash
+git clone https://github.com/huggingface/transformers.git
+cd transformers
+
+# pip
+pip install '.[torch]'
+
+# uv
+uv pip install '.[torch]'
+
+```
+
+### 2. 核心代码示例
+
+以下示例展示了如何加载模型、启用思考模式，并利用 `re` 模块解析输出中的“思考过程”与“最终结论”。
+
+```python
+import re
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+# 1. Configure Model
+model_id = "tencent/Youtu-LLM-2B"
+
+# 2. Initialize Tokenizer and Model
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    device_map="auto"
+)
+
+# 3. Construct Dialogue Input
+prompt = "Hello"
+messages = [{"role": "user", "content": prompt}]
+
+# Use apply_chat_template to construct input; set enable_thinking=True to activate Reasoning Mode
+input_text = tokenizer.apply_chat_template(
+    messages,
+    tokenize=False,
+    add_generation_prompt=True,
+    enable_thinking=True
+)
+
+model_inputs = tokenizer([input_text], return_tensors="pt").to(model.device)
+print("Input prepared. Starting generation...")
+
+# 4. Generate Response
+outputs = model.generate(
+    **model_inputs,
+    max_new_tokens=512,
+    do_sample=True,
+    temperature=1.0,
+    top_k=20,
+    top_p=0.95,
+    repetition_penalty=1.05
+)
+print("Generation complete!")
+
+# 5. Parse Results
+full_response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+def parse_reasoning(text):
+    """Extract thought process within <think> tags and the subsequent answer content"""
+    thought_pattern = r"<think>(.*?)</think>"
+    match = re.search(thought_pattern, text, re.DOTALL)
+    
+    if match:
+        thought = match.group(1).strip()
+        answer = text.split("</think>")[-1].strip()
+    else:
+        thought = "(No explicit thought process generated)"
+        answer = text
+    return thought, answer
+
+thought, final_answer = parse_reasoning(full_response)
+
+print(f"\n{'='*20} Thought Process {'='*20}\n{thought}")
+print(f"\n{'='*20} Final Answer {'='*20}\n{final_answer}")
+```
+</details>
 
 ### 3. 关键配置说明
 
