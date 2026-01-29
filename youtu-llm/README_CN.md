@@ -38,6 +38,7 @@ Youtu-LLM的主要贡献如下:
 | Youtu-LLM-2B-GGUF | Youtu-LLM-2B Instruct模型，GGUF格式 | 🤗 [下载链接](https://huggingface.co/tencent/Youtu-LLM-2B-GGUF)|
 
 ## 📰 最新进展
+- [2026.01.28] 现在您可以基于[Transformers](https://github.com/huggingface/transformers/pull/43166)直接使用Youtu-LLM-2B.
 - [2026.01.07] 现在您可以基于[ModelScope](https://mp.weixin.qq.com/s/JJtQWSYEjnE7GnPkaJ7UNA)微调Youtu-LLM-2B。
 - [2026.01.04] 现在您可以基于[LlamaFactory](https://github.com/hiyouga/LlamaFactory/pull/9707)微调Youtu-LLM-2B。
 
