@@ -38,6 +38,7 @@ The key contributions of Youtu-LLM are as follows:
 | Youtu-LLM-2B-GGUF | Instruct model of Youtu-LLM-2B, in GGUF format | 🤗 [Model](https://huggingface.co/tencent/Youtu-LLM-2B-GGUF)|
 
 ## 📰 News
+- [2026.01.28] You can now directly use Youtu-LLM with [Transformers](https://github.com/huggingface/transformers/pull/43166).
 - [2026.01.07] You can now fine-tuning Youtu-LLM with [ModelScope](https://mp.weixin.qq.com/s/JJtQWSYEjnE7GnPkaJ7UNA).
 - [2026.01.04] You can now fine-tuning Youtu-LLM with [LlamaFactory](https://github.com/hiyouga/LlamaFactory/pull/9707).
 
@@ -126,8 +127,12 @@ We provide our evaluation codes for reproducing the above scores.
 ## 🚀 Quick Start
 This guide will help you quickly deploy and invoke the **Youtu-LLM-2B** model. This model supports "Reasoning Mode", enabling it to generate higher-quality responses through Chain of Thought (CoT).
 
-### 1. Environment Preparation
+<details>
+<summary>Transformers below 5.0.0.dev0</summary>
 
+If you wish to use Youtu-LLM-2B based on earlier versions of transformers, please make sure to download the model repository before this [commit](https://huggingface.co/tencent/Youtu-LLM-2B/commit/5690998a0a4cae7a7ec970d09262745e00bb6c5c).
+
+### 1. Environment Preparation
 Ensure your Python environment has the `transformers` library installed and that the version meets the requirements.
 
 ```bash
@@ -206,6 +211,93 @@ thought, final_answer = parse_reasoning(full_response)
 print(f"\n{'='*20} Thought Process {'='*20}\n{thought}")
 print(f"\n{'='*20} Final Answer {'='*20}\n{final_answer}")
 ```
+</details>
+
+<details>
+<summary>Transformers equals or higher than 5.0.0.dev0</summary>
+
+### 1. Environment Preparation
+Ensure your Python environment has the `transformers` library installed and that the version meets the requirements.
+
+```bash
+git clone https://github.com/huggingface/transformers.git
+cd transformers
+
+# pip
+pip install '.[torch]'
+
+# uv
+uv pip install '.[torch]'
+
+```
+
+### 2. Core Code Example
+
+The following example demonstrates how to load the model, enable Reasoning Mode, and use the `re` module to parse the "Thought Process" and the "Final Answer" from the output.
+
+```python
+import re
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+# 1. Configure Model
+model_id = "tencent/Youtu-LLM-2B"
+
+# 2. Initialize Tokenizer and Model
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(
+    model_id,
+    device_map="auto"
+)
+
+# 3. Construct Dialogue Input
+prompt = "Hello"
+messages = [{"role": "user", "content": prompt}]
+
+# Use apply_chat_template to construct input; set enable_thinking=True to activate Reasoning Mode
+input_text = tokenizer.apply_chat_template(
+    messages,
+    tokenize=False,
+    add_generation_prompt=True,
+    enable_thinking=True
+)
+
+model_inputs = tokenizer([input_text], return_tensors="pt").to(model.device)
+print("Input prepared. Starting generation...")
+
+# 4. Generate Response
+outputs = model.generate(
+    **model_inputs,
+    max_new_tokens=512,
+    do_sample=True,
+    temperature=1.0,
+    top_k=20,
+    top_p=0.95,
+    repetition_penalty=1.05
+)
+print("Generation complete!")
+
+# 5. Parse Results
+full_response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+def parse_reasoning(text):
+    """Extract thought process within <think> tags and the subsequent answer content"""
+    thought_pattern = r"<think>(.*?)</think>"
+    match = re.search(thought_pattern, text, re.DOTALL)
+    
+    if match:
+        thought = match.group(1).strip()
+        answer = text.split("</think>")[-1].strip()
+    else:
+        thought = "(No explicit thought process generated)"
+        answer = text
+    return thought, answer
+
+thought, final_answer = parse_reasoning(full_response)
+
+print(f"\n{'='*20} Thought Process {'='*20}\n{thought}")
+print(f"\n{'='*20} Final Answer {'='*20}\n{final_answer}")
+```
+</details>
 
 ### 3. Key Configuration Details
 
